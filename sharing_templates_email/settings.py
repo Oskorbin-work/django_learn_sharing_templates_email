@@ -31,13 +31,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'sharing_email.apps.SharingEmailConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sharing_email.apps.SharingEmailConfig',
 ]
 
 MIDDLEWARE = [
@@ -74,11 +74,19 @@ WSGI_APPLICATION = 'sharing_templates_email.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
+# -------------------------------------
+# it's test data!
+# login: learn_account
+# password: Learn2023
+# -------------------------------------
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'db_sharing_email',
+        'USER': 'learn_account',
+        'PASSWORD': 'Learn2023',
+        'HOST': '',
+        'PORT': '',
     }
 }
 
