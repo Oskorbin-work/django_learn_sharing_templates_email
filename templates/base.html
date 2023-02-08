@@ -1,4 +1,4 @@
-
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -81,10 +81,20 @@
                             <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
                     </li>
                     <li>
+
                          <span class="ms-1 d-none d-sm-inline">
-                                                <select class="selectpicker form-select bg-dark text-white text-decoration-none" data-width="fit">
-    <option data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
-  <option  data-content='<span class="flag-icon flag-icon-mx"></span> Español'>Español</option>
+                                         {% get_current_language as CURRENT_LANGUAGE %}
+      {% get_available_languages as AVAILABLE_LANGUAGES %}
+      {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
+
+<select class="selectpicker form-select bg-dark text-white text-decoration-none" data-width="fit" onchange="location = this.value;">
+
+
+          {% for language in languages %}
+  <option
+           {% if language.code == CURRENT_LANGUAGE %} selected{% endif %}
+          value = "/{{ language.code }}/">{{ language.name_local }} </option>
+        {% endfor %}
 </select>
                                                       </span>
                     </li>
@@ -100,9 +110,17 @@
             	<div id="content" name="content" class="main">
 		<div class="row justify-content-center">
 			<div class="col-8">
-				<h1 class="mt-2 text-center">My Site</h1>
+				<h1 class="mt-2 text-center">
+
+                    {% for name in Test%}
+                        {{ name.name}}
+                    {% endfor %}
+                <br>
+                </h1>
 				<hr class="mt-0 mb-4">
 			</div>
+        </ul>
+      </div>
 		</div>
 	</div>
         </div>
