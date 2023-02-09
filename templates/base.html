@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  {% block title %}<title>Main site</title>{% endblock %}
+{% block title %}<title>Main site</title>{% endblock %}
 
 {% load bootstrap5 %}
 
@@ -15,6 +15,9 @@
 
 {% load bootstrap_icons %}
 
+{% get_current_language as CURRENT_LANGUAGE %}
+{% get_available_languages as AVAILABLE_LANGUAGES %}
+ {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
 </head>
 <body>
     <div class="container-fluid">
@@ -22,7 +25,10 @@
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <span class="fs-5 d-none d-sm-inline">Menu</span>
+
+                {% for base_list in Base%}
+                    <span class="fs-5 d-none d-sm-inline">{{ base_list.name_menu}}</span>
+                            {% endfor %}
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
@@ -30,106 +36,66 @@
                             {% md_icon 'alarm' %} <span class="ms-1 d-none d-sm-inline">Email</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
-                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1 </a>
+                                {% for base_list in Base%}
+                                    {% for level_1 in base_list.menu_one.all%}
+                                    <li class="nav-item">
+                                        <a href="#submenu{{ level_1.id}}" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                                            <i class="fs-4 bi-speedometer2"></i>
+                                            <span class="ms-1 d-none d-sm-inline">{{ level_1}}</span>
+                                        </a>
+                                    <ul class="collapse show nav flex-column ms-1" id="submenu{{ level_1.id}}" data-bs-parent="#menu">
+                                                                <li class="w-100">
+
                             </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2 </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></a>
-                    </li>
-                    <li>
-                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Bootstrap</span></a>
-                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
-                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
-                    </li>
+                                        {% for level_2 in level_1.menu_two.all%}
+
+                                            <li class="w-100">
+                                                <a href="#" class="nav-link px-0"> {{ level_2}} </a>
+                                            </li>
+                                            {% empty %}
+                                        {% endfor %}
+                                    </ul>
+                                    </li>
+                                    {% endfor %}
+                            {% endfor %}
+
                     <li>
 
                          <span class="ms-1 d-none d-sm-inline">
-                                         {% get_current_language as CURRENT_LANGUAGE %}
-      {% get_available_languages as AVAILABLE_LANGUAGES %}
-      {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
 
-<select class="selectpicker form-select bg-dark text-white text-decoration-none" data-width="fit" onchange="location = this.value;">
-
-
-          {% for language in languages %}
-  <option
-           {% if language.code == CURRENT_LANGUAGE %} selected{% endif %}
-          value = "/{{ language.code }}/">{{ language.name_local }} </option>
-        {% endfor %}
+                             <select class="selectpicker form-select bg-dark text-white text-decoration-none" data-width="fit" onchange="location = this.value;">
+                                 {% for language in languages %}
+                                     <option
+                                             {% if language.code == CURRENT_LANGUAGE %} selected{% endif %}
+                                             value = "/{{ language.code }}/">{{ language.name_local }} </option>
+                                 {% endfor %}
 </select>
-                                                      </span>
+                         </span>
                     </li>
                 </ul>
-                <hr>
-
             </div>
-
         </div>
 
         <div class="col py-2">
-
-            	<div id="content" name="content" class="main">
-		<div class="row justify-content-center">
-			<div class="col-8">
-				<h1 class="mt-2 text-center">
-
-                    {% for name in Test%}
-                        {{ name.name}}
-                    {% endfor %}
-                <br>
-                </h1>
-				<hr class="mt-0 mb-4">
-			</div>
-        </ul>
-      </div>
-		</div>
-	</div>
+            <div id="content" name="content" class="main">
+                <div class="row justify-content-center">
+                    <div class="col-8">
+                        <h1 class="mt-2 text-center">
+                            {% for base_list in Base%}
+                                {{ base_list.title}}
+                            {% endfor %}
+                        </h1>
+                        <hr class="mt-0 mb-4">
+                      {% block content %}Тело проекта{% endblock %}
+                    </div>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
-
+    </div>
+    </div>
 
   {% block sidebar %}<!-- insert default navigation text for every page -->{% endblock %}
-  {% block content %}<!-- default content text (typically empty) -->{% endblock %}
 </body>
 </html>
