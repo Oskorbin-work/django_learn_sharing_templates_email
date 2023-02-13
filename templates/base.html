@@ -24,38 +24,37 @@
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
 
                 {% for base_list in Base%}
                     <span class="fs-5 d-none d-sm-inline">{{ base_list.name_menu}}</span>
                             {% endfor %}
-                </a>
-                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link align-middle px-0">
-                            {% md_icon 'alarm' %} <span class="ms-1 d-none d-sm-inline">Email</span>
-                        </a>
-                    </li>
+                <a href="{% url 'main_page' %}">test</a>
+                <ul class="nav nav-pills flex-column align-items-center align-items-sm-start" id="menu">
+
                                 {% for base_list in Base%}
                                     {% for level_1 in base_list.menu_one.all%}
                                     <li class="nav-item">
-                                        <a href="#submenu{{ level_1.id}}" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                                    {% if level_1.menu_two.all %}
+                                        <a href="#submenu{{ level_1.id}}" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle">
+                                    {% else %}
+                                        <a href="{{level_1.address}}"  class="nav-link px-0 align-middle">
+                                    {% endif %}
+
                                             <i class="fs-4 bi-speedometer2"></i>
                                             <span class="ms-1 d-none d-sm-inline">{{ level_1}}</span>
                                         </a>
+                                    </li>
                                     <ul class="collapse show nav flex-column ms-1" id="submenu{{ level_1.id}}" data-bs-parent="#menu">
-                                                                <li class="w-100">
-
-                            </li>
                                         {% for level_2 in level_1.menu_two.all%}
 
                                             <li class="w-100">
-                                                <a href="#" class="nav-link px-0"> {{ level_2}} </a>
+                                                <a href="{{level_2.address}}" class="nav-link px-10"> {{ level_2.name}} </a>
                                             </li>
                                             {% empty %}
+
                                         {% endfor %}
                                     </ul>
-                                    </li>
+
                                     {% endfor %}
                             {% endfor %}
 
@@ -86,7 +85,9 @@
                             {% endfor %}
                         </h1>
                         <hr class="mt-0 mb-4">
-                      {% block content %}Тело проекта{% endblock %}
+                      {% block content %}
+
+                      {% endblock %}
                     </div>
                     </ul>
                 </div>

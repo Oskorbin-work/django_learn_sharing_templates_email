@@ -1,5 +1,4 @@
-
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Base
 
 def index(request):
@@ -9,3 +8,6 @@ def index(request):
         'Base': all_test,
     }
     return render(request, 'base.html', context=context)
+
+def featured_product_view(request):
+    return redirect('/main_page/')
