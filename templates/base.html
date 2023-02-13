@@ -66,10 +66,11 @@
                                  {% for language in languages %}
                                      <option
                                              {% if language.code == CURRENT_LANGUAGE %} selected{% endif %}
-                                             value = "/{{ language.code }}/">{{ language.name_local }} </option>
+                                             value = "/{{ language.code }}/{{ get_last_url }}/">{{ language.name_local }} </option>
                                  {% endfor %}
 </select>
                          </span>
+
                     </li>
                 </ul>
             </div>
