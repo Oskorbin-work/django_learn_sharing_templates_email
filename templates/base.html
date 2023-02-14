@@ -28,7 +28,6 @@
                 {% for base_list in Base%}
                     <span class="fs-5 d-none d-sm-inline">{{ base_list.name_menu}}</span>
                             {% endfor %}
-                <a href="{% url 'main_page' %}">test</a>
                 <ul class="nav nav-pills flex-column align-items-center align-items-sm-start" id="menu">
 
                                 {% for base_list in Base%}
@@ -37,7 +36,7 @@
                                     {% if level_1.menu_two.all %}
                                         <a href="#submenu{{ level_1.id}}" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle">
                                     {% else %}
-                                        <a href="{{level_1.address}}"  class="nav-link px-0 align-middle">
+                                        <a href="{%url level_1.address%}"  class="nav-link px-0 align-middle">
                                     {% endif %}
 
                                             <i class="fs-4 bi-speedometer2"></i>
@@ -48,7 +47,7 @@
                                         {% for level_2 in level_1.menu_two.all%}
 
                                             <li class="w-100">
-                                                <a href="{{level_2.address}}" class="nav-link px-10"> {{ level_2.name}} </a>
+                                                <a href="{%url level_2.address%}" class="nav-link px-10"> {{ level_2.name}} </a>
                                             </li>
                                             {% empty %}
 
@@ -66,7 +65,9 @@
                                  {% for language in languages %}
                                      <option
                                              {% if language.code == CURRENT_LANGUAGE %} selected{% endif %}
-                                             value = "/{{ language.code }}/{{ get_last_url }}/">{{ language.name_local }} </option>
+                                             value = "/{{ language.code }}/{{ get_last_url }}/">
+
+                                         {{ language.name_local }} </option>
                                  {% endfor %}
 </select>
                          </span>
