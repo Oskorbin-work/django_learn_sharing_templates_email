@@ -8,7 +8,6 @@ urlpatterns = [
     path('about_me/languages/',  views.redirect_to_url_main_page, name='about_me_languages'),
     path('about_me/skills/',  views.redirect_to_url_main_page, name='about_me_skills'),
     path('projects/sharing_emails/',  views.redirect_to_url_main_page, name='projects_sharing_emails'),
-    path('projects/sharing_emails/',  views.redirect_to_url_main_page, name='projects_sharing_emails'),
     path('main_page/', views.base, name='main_page'),
 
 ]

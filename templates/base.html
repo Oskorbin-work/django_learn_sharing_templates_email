@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-{% block title %}<title>Main site</title>{% endblock %}
+ <title> {% block title %} {% endblock %} </title>
 
 {% load bootstrap5 %}
 
@@ -25,13 +25,11 @@
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
 
-                {% for base_list in Base%}
-                    <span class="fs-5 d-none d-sm-inline">{{ base_list.name_menu}}</span>
-                            {% endfor %}
+                    <span class="fs-5 d-none d-sm-inline">{{ Base.name_menu}}</span>
+
                 <ul class="nav nav-pills flex-column align-items-center align-items-sm-start" id="menu">
 
-                                {% for base_list in Base%}
-                                    {% for level_1 in base_list.menu_one.all%}
+                                    {% for level_1 in Base.menu_one.all%}
                                     <li class="nav-item">
                                     {% if level_1.menu_two.all %}
                                         <a href="#submenu{{ level_1.id}}" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle">
@@ -43,7 +41,7 @@
                                             <span class="ms-1 d-none d-sm-inline">{{ level_1}}</span>
                                         </a>
                                     </li>
-                                    <ul class="collapse show nav flex-column ms-1" id="submenu{{ level_1.id}}" data-bs-parent="#menu">
+                                    <ul class="collapse nav flex-column ms-1" id="submenu{{ level_1.id}}" data-bs-parent="#menu">
                                         {% for level_2 in level_1.menu_two.all%}
 
                                             <li class="w-100">
@@ -55,7 +53,6 @@
                                     </ul>
 
                                     {% endfor %}
-                            {% endfor %}
 
                     <li>
 
@@ -80,18 +77,16 @@
         <div class="col py-2">
             <div id="content" name="content" class="main">
                 <div class="row justify-content-center">
-                    <div class="col-8">
+                    <div class="col-11">
                         <h1 class="mt-2 text-center">
-                            {% for base_list in Base%}
-                                {{ base_list.title}}
-                            {% endfor %}
+                                 {{ Content_body.name }}
                         </h1>
                         <hr class="mt-0 mb-4">
-                      {% block content %}
+                        {% block content %}
 
-                      {% endblock %}
+                        {% endblock %}
                     </div>
-                    </ul>
+
                 </div>
             </div>
         </div>
