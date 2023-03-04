@@ -1,9 +1,11 @@
 {% load i18n %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
  <title> {% block title %} {% endblock %} </title>
+
 
 {% load bootstrap5 %}
 
@@ -14,6 +16,8 @@
 {% bootstrap_messages %}
 
 {% load bootstrap_icons %}
+
+<link rel="stylesheet" href="{% static 'core/style.css' %}">
 
 {% get_current_language as CURRENT_LANGUAGE %}
 {% get_available_languages as AVAILABLE_LANGUAGES %}
@@ -31,21 +35,32 @@
 
                                     {% for level_1 in Base.menu_one.all%}
                                     <li class="nav-item">
+
                                     {% if level_1.menu_two.all %}
-                                        <a href="#submenu{{ level_1.id}}" data-bs-toggle="collapse" class="nav-link px-0 align-middle dropdown-toggle">
+                                        <a href="#submenu{{ level_1.id}}"  class="nav-link px-0 align-middle ">
                                     {% else %}
-                                        <a href="{%url level_1.address%}"  class="nav-link px-0 align-middle">
+                                        {% url level_1.address as the_url %}
+                                        {% if the_url in request.path  %}
+                                        <a href="{%url level_1.address%}"  class="active-link nav-link px-0 align-middle text-warning">
+                                             {% else %}
+                                            <a href="{%url level_1.address%}"  class="nav-link px-0 align-middle">
+                                            {% endif %}
                                     {% endif %}
 
                                             <i class="fs-4 bi-speedometer2"></i>
-                                            <span class="ms-1 d-none d-sm-inline">{{ level_1}}</span>
+                                            <span class="ms-1 d-none d-sm-inline ">{{ level_1}}</span>
                                         </a>
                                     </li>
-                                    <ul class="collapse nav flex-column ms-1" id="submenu{{ level_1.id}}" data-bs-parent="#menu">
+                                    <ul class=" nav flex-column ms-1 " id="submenu{{ level_1.id}}" data-bs-parent="#menu">
                                         {% for level_2 in level_1.menu_two.all%}
 
                                             <li class="w-100">
-                                                <a href="{%url level_2.address%}" class="nav-link px-10"> {{ level_2.name}} </a>
+                                            {% url level_2.address as the_url %}
+                                           {% if the_url in request.path  %}
+                                                <a href="{%url level_2.address%}" class="active-link nav-link px-10 "> {{ level_2.name}} </a>
+                                            {% else %}
+                                        <a href="{%url level_2.address%}" class="nav-link px-10"> {{ level_2.name}} </a>
+                                            {% endif %}
                                             </li>
                                             {% empty %}
 

@@ -20,3 +20,4 @@ class TemplateEmail(models.Model):
     closing_message = models.CharField(max_length=256)
     # Signature Block
     signature_block = models.CharField(max_length=256)
+
