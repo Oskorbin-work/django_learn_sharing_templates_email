@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
  {{ Content_body.title }}
@@ -6,18 +7,60 @@
 
 
 {% block content %}
-        <div class="col py-2">
+        <div class="col ">
+                                                        <sub class="text-secondary">
+                            Данная страничка написана с использованием JSON как хранилище данных
+                        </sub>
             <div id="content" name="content" class="main">
                 <div class="row justify-content-center">
                     <div class="col-11">
+
                         <h1 class="mt-2 text-center">
                             Главная страничка
                         </h1>
-                        <sub class="text-secondary">
-                            Данная страничка записана с использованием JSON как хранилище данных
-                        </sub>
-                        <hr class="mt-0 mb-4">
+                        <hr class="mb-0">
+                        <div>
+                            <section >
+  <div class="container py-5">
 
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card ">
+          <div class="card-body text-center">
+
+            <img src="{% static 'main_page/image/Me.jpg' %}" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 250px;">
+            <h5 class="my-3">John Smith</h5>
+            <p class="text-muted mb-1">Full Stack Developer</p>
+            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+
+          </div>
+        </div>
+
+      </div>
+      <div class=" card col-lg-8">
+          <div class="card-body text-left">
+              <p>
+Добрый день, посетитель сайта!
+              </p>
+              <p>
+Я – автор, разработчик и владелец этого сайта. На фотографии слева от этого текста – я ;)
+</p>
+              <p>
+Вы находитесь на сайте, который был создан для демонстрации моих знаних в области языка программирования Python, фреймоверка Django и других необходимых технологий для backend-разработки.
+</p>
+                  <p>
+На сайте представлена информация про меня, контактная информация, а также мои учебные проекты по Django, которые я писал (и продолжаю писать!). Со всем этим можно ознакомиться через меню, которое находиться в левой части сайта.
+</p>
+              <p>
+В ходе разработки сайта, я старался использовать различные технологии, про которые написано на этой странице.
+</p>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+                        </div>
                     </div>
                 </div>
             </div>
