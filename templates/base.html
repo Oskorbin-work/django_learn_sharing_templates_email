@@ -17,7 +17,9 @@
 
 {% load bootstrap_icons %}
 
-<link rel="stylesheet" href="{% static 'core/style.css' %}">
+    {% block link_css %} {% endblock %}
+<link rel="stylesheet" href="{% static 'base/css/menu.css' %}">
+
 
 {% get_current_language as CURRENT_LANGUAGE %}
 {% get_available_languages as AVAILABLE_LANGUAGES %}

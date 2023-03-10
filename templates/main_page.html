@@ -5,67 +5,88 @@
  {{ Content_body.title }}
 {% endblock %}
 
-
+{%  block link_css %}
+   <link rel="stylesheet" href="{% static 'main_page/css/body.css' %}">
+{% endblock %}
 {% block content %}
-        <div class="col ">
-                                                        <sub class="text-secondary">
+        <div class="col">
+            <sub class="text-secondary">
                             Данная страничка написана с использованием JSON как хранилище данных
-                        </sub>
+            </sub>
             <div id="content" name="content" class="main">
                 <div class="row justify-content-center">
                     <div class="col-11">
-
-                        <h1 class="mt-2 text-center">
-                            Главная страничка
-                        </h1>
+                        <h1 class=" text-center">Главная страничка</h1>
                         <hr class="mb-0">
                         <div>
-                            <section >
-  <div class="container py-5">
-
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card ">
-          <div class="card-body text-center">
-
-            <img src="{% static 'main_page/image/Me.jpg' %}" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 250px;">
-            <h5 class="my-3">John Smith</h5>
-            <p class="text-muted mb-1">Full Stack Developer</p>
-            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
-
-          </div>
-        </div>
-
-      </div>
-      <div class=" card col-lg-8">
-          <div class="card-body text-left">
-              <p>
-Добрый день, посетитель сайта!
-              </p>
-              <p>
-Я – автор, разработчик и владелец этого сайта. На фотографии слева от этого текста – я ;)
-</p>
-              <p>
-Вы находитесь на сайте, который был создан для демонстрации моих знаних в области языка программирования Python, фреймоверка Django и других необходимых технологий для backend-разработки.
-</p>
-                  <p>
-На сайте представлена информация про меня, контактная информация, а также мои учебные проекты по Django, которые я писал (и продолжаю писать!). Со всем этим можно ознакомиться через меню, которое находиться в левой части сайта.
-</p>
-              <p>
-В ходе разработки сайта, я старался использовать различные технологии, про которые написано на этой странице.
-</p>
-          </div>
-      </div>
-    </div>
-  </div>
-</section>
+                            <div class="container py-4 px-4">
+                                <div class="row">
+                                    <div class="col-lg-4 ">
+                                        <div class="card-body text-center ">
+                                            <img src="{% static 'main_page/image/Me.jpg' %}" alt="avatar"
+                                                 class=" avatar rounded-circle">
+                                            <h5 class="my-3">Сергей Полозюк</h5>
+                                            <p class="text-muted mb-1">Python Разработчик</p>
+                                            <p class="text-muted mb-4">Житомир, Украина</p>
+                                        </div>
+                                    </div>
+                                    <div class="  col-lg-8 p-3">
+                                        <div class="card-body text-left">
+                                            <p>Добрый день, посетитель сайта!</p>
+                                            <p>
+                                                Я – автор, разработчик и владелец этого сайта. На фотографии слева от этого текста – я ;)
+                                            </p>
+                                            <p>
+                                                Вы находитесь на сайте, который был создан для демонстрации моих знаних в области языка программирования Python, фреймоверка Django и других необходимых технологий для backend-разработки.
+                                            </p>
+                                            <p>
+                                                На сайте представлена информация про меня, контактная информация, а также мои учебные проекты по Django, которые я писал (и продолжаю писать!). Со всем этим можно ознакомиться через меню, которое находиться в левой части сайта.
+                                            </p>
+                                            <p>
+                                                В ходе разработки сайта, я использовал различные технологии, чтобы их изучить на практике. Стек технологий представлен внизу.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row flex-fill">
+                                    <h2 class=" text-center">Стек технологий сайта</h2>
+                                    <div class="card col-lg-12 col-md-6">
+                                        <div class="card-body ">
+                                            <section class="main">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-sm-5">
+                                                        <h4 class="h5">Базовые технологии</h4>
+                                                    </div>
+                                                    <div class="col-sm-4 py-2">
+                                                        <span class="badge bg-secondary">Python</span>
+                                                        <span class="badge bg-secondary">Django</span>
+                                                        <span class="badge bg-secondary">HTML</span>
+                                                        <span class="badge bg-secondary">CSS</span>
+                                                        <span class="badge bg-secondary">JavaScript</span>
+                                                        <span class="badge bg-secondary">SQL</span>
+                                                        <span class="badge bg-secondary">PostgreSQL</span>
+                                                        <span class="badge bg-secondary">JSON</span>
+                                                        <span class="badge bg-secondary">Bootstrap</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-sm-5">
+                                                        <h4 class="h5">Важные библиотеки Python & компоненты Django</h4>
+                                                    </div>
+                                                    <div class="col-sm-4 py-2">
+                                                         <span class="badge bg-secondary">SMTP</span>
+                                                        <span class="badge bg-secondary">django.utils.translation</span>
+                                                        <span class="badge bg-secondary">parler</span>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
 {% endblock %}
