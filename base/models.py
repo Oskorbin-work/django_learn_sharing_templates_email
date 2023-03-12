@@ -36,6 +36,7 @@ class Base(TranslatableModel):
 class ContentBody(TranslatableModel):
     translations = TranslatedFields(
         title=models.CharField(max_length=90),
+        data_json=models.JSONField(blank=True, null=True)
     )
 
     def __str__(self):

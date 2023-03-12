@@ -4,7 +4,7 @@ from .models import ContentBody
 from django.utils.translation import get_language
 
 def main_page(request):
-    base_entry = Base.objects.all()[0]
+    base_entry = Base.objects.first()
     content_body = ContentBody.objects.filter(translations__title="Main Page")[0]
     context = {
         'Base': base_entry,

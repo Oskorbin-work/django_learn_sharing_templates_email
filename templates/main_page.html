@@ -11,12 +11,12 @@
 {% block content %}
         <div class="col">
             <sub class="text-secondary">
-                            Данная страничка написана с использованием JSON как хранилище данных
+                            {{ Content_body.data_json.header.info_technology }}
             </sub>
             <div id="content" name="content" class="main">
                 <div class="row justify-content-center">
                     <div class="col-11">
-                        <h1 class=" text-center">Главная страничка</h1>
+                        <h1 class=" text-center">{{ Content_body.data_json.header.name }}</h1>
                         <hr class="mb-0">
                         <div>
                             <div class="container py-4 px-4">
@@ -25,60 +25,42 @@
                                         <div class="card-body text-center ">
                                             <img src="{% static 'main_page/image/Me.jpg' %}" alt="avatar"
                                                  class=" avatar rounded-circle">
-                                            <h5 class="my-3">Сергей Полозюк</h5>
-                                            <p class="text-muted mb-1">Python Разработчик</p>
-                                            <p class="text-muted mb-4">Житомир, Украина</p>
+                                            <h5 class="my-3">{{ Content_body.data_json.avatar.name }}</h5>
+                                            <p class="text-muted mb-1">{{ Content_body.data_json.avatar.job }}</p>
+                                            <p class="text-muted mb-4">{{ Content_body.data_json.avatar.geo }}</p>
                                         </div>
                                     </div>
                                     <div class="  col-lg-8 p-3">
                                         <div class="card-body text-left">
-                                            <p>Добрый день, посетитель сайта!</p>
-                                            <p>
-                                                Я – автор, разработчик и владелец этого сайта. На фотографии слева от этого текста – я ;)
-                                            </p>
-                                            <p>
-                                                Вы находитесь на сайте, который был создан для демонстрации моих знаних в области языка программирования Python, фреймоверка Django и других необходимых технологий для backend-разработки.
-                                            </p>
-                                            <p>
-                                                На сайте представлена информация про меня, контактная информация, а также мои учебные проекты по Django, которые я писал (и продолжаю писать!). Со всем этим можно ознакомиться через меню, которое находиться в левой части сайта.
-                                            </p>
-                                            <p>
-                                                В ходе разработки сайта, я использовал различные технологии, чтобы их изучить на практике. Стек технологий представлен внизу.
-                                            </p>
+                                            <p>{{ Content_body.data_json.description_me.first_paragraph }}</p>
+                                            <p>{{ Content_body.data_json.description_me.second_paragraph }} </p>
+                                            <p>{{ Content_body.data_json.description_me.third_paragraph }}</p>
+                                            <p>{{ Content_body.data_json.description_me.fourth_paragraph }}</p>
+                                            <p>{{ Content_body.data_json.description_me.fifth_paragraph }}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row flex-fill">
-                                    <h2 class=" text-center">Стек технологий сайта</h2>
+                                    <h2 class=" text-center">{{ Content_body.data_json.technology_stack.name }}</h2>
                                     <div class="card col-lg-12 col-md-6">
                                         <div class="card-body ">
                                             <section class="main">
+                                                {% for key in Content_body.data_json.technology_stack.stacks.items%}
                                                 <div class="row justify-content-center">
-                                                    <div class="col-sm-5">
-                                                        <h4 class="h5">Базовые технологии</h4>
+                                                      <div class="col-sm-6">
+                                                        <h4 class="h5">
+                                                            {% for index in key%} {{ index.name }} {% endfor %}
+                                                        </h4>
                                                     </div>
-                                                    <div class="col-sm-4 py-2">
-                                                        <span class="badge bg-secondary">Python</span>
-                                                        <span class="badge bg-secondary">Django</span>
-                                                        <span class="badge bg-secondary">HTML</span>
-                                                        <span class="badge bg-secondary">CSS</span>
-                                                        <span class="badge bg-secondary">JavaScript</span>
-                                                        <span class="badge bg-secondary">SQL</span>
-                                                        <span class="badge bg-secondary">PostgreSQL</span>
-                                                        <span class="badge bg-secondary">JSON</span>
-                                                        <span class="badge bg-secondary">Bootstrap</span>
+                                                <div class="col-sm-4 py-2">
+                                                       {% for index in key%}
+                                                           {% for zrada,value in index.group_technologies.items%}
+                                                                  <span class="badge bg-secondary">{{value}}</span>
+                                                            {% endfor %}
+                                                        {% endfor %}
                                                     </div>
                                                 </div>
-                                                <div class="row justify-content-center">
-                                                    <div class="col-sm-5">
-                                                        <h4 class="h5">Важные библиотеки Python & компоненты Django</h4>
-                                                    </div>
-                                                    <div class="col-sm-4 py-2">
-                                                         <span class="badge bg-secondary">SMTP</span>
-                                                        <span class="badge bg-secondary">django.utils.translation</span>
-                                                        <span class="badge bg-secondary">parler</span>
-                                                    </div>
-                                                </div>
+                                                    {% endfor %}
                                             </section>
                                         </div>
                                     </div>
